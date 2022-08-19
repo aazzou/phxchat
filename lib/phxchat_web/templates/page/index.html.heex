@@ -1,0 +1,70 @@
+<div class="py-10 h-screen px-2" x-data="{ openTab: 'contacts' }">
+  <div class="main-container">
+      <div class="md:flex">
+          <div class="w-full p-4">
+            <div class="grid grid-cols-12">
+              <div class="col-span-11">
+                  <div class="relative flex justify-between h-16">
+                    <div class="flex-1 flex">
+                      <div class="sm:block">
+                        <ul class="flex space-x-4">
+                        <li @click="openTab='contacts'" x-bind:class="openTab === 'contacts' ? 'selectedmenu' : 'unselectedmenu'" > Contacts </li>
+                        <li @click="openTab='conversations'" x-bind:class="openTab === 'conversations' ? 'selectedmenu' : 'unselectedmenu'" > Conversations </li>
+                      </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-span-1">
+                    <div class="relative flex justify-between h-8">
+                      <div class="flex-1 flex">
+                        <a href="/add">
+                          <div class="add-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            <div class="relative"> <input type="text" class="search-input" placeholder="Search..."> </div>
+            <div x-show="openTab === 'contacts'">
+              <ul>
+                <%= for contact <- @user.contacts do %>
+                  <a href={ "/go/#{contact.id}" } >
+                      <li class="listing-elm">
+                          <div class="flex ml-2">
+                              <span class="font-large text-black"><%= contact.username %></span>
+                          </div>
+                      </li>
+                  </a>
+                <% end %>
+              </ul>
+            </div>
+            <div x-show="openTab === 'conversations'">
+              <ul>
+                <%= for conversation <- @user.conversations do %>
+                  <a href={ "/chat/#{conversation.uuid}"  } >
+                      <li class="listing-elm">
+                        <div class="flex ml-2">
+                            <span class="font-large text-black"> <%= conversation.uuid %> </span>
+                        </div>
+                      </li>
+                  </a>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+      </div>
+      <div class=" w-full h-12">
+        <div class="grid grid-cols-12">
+          <div class="col-span-8"> <span class="text-gray-700 pl-4 text-sm"> <%= @current_user.account_id %> </span> </div>
+          <div class="col-span-4 text-right pr-4">
+          <%= link  to: Routes.user_session_path(@conn, :delete), method: :delete, class: "text-gray-700 pl-4 text-sm" do %>  Log Out
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+          <% end %>
+          </div>
+          </div>
+      </div>
+  </div>
+</div>

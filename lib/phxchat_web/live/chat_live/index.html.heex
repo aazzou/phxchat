@@ -1,0 +1,38 @@
+  <div class="border rounded"  x-data="{ openemojis: false }">
+    <div>
+      <div class="w-full">
+        <div class="relative flex items-center p-3 border-b border-gray-300">
+          <%= link to: "/" do %> <svg class="w-5 h-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor"> <path class="text-grey-500 fill-current" d="M9.41 11H17a1 1 0 0 1 0 2H9.41l2.3 2.3a1 1 0 1 1-1.42 1.4l-4-4a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.42 1.4L9.4 11z"/></svg> <% end %>
+          <span class="text-gray-500 px-3 py-2 text-sm font-medium"><%= @conversation.uuid %></span>
+        </div>
+        <div class="relative w-full p-6 overflow-y-auto h-[35rem]" id="chat-container">
+          <ul class="space-y-2">
+            <%= for message <- @messages do %>
+              <.show_message message={message} current_user={@current_user}/>
+            <% end %>
+          </ul>
+        </div>
+        <div id="unicode-emoji-picker-block" x-show="openemojis" style="display: none;" >
+          <unicode-emoji-picker></unicode-emoji-picker>
+        </div>
+        <%= f = form_for :message, "#", id: "chat-form", "x-ref": "chatform", phx_submit: :submit_message %> 
+        <div class="flex items-center justify-between w-full p-3 border-t border-gray-300">
+            <button x-on:click="openemojis = ! openemojis" >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-indigo-600" fill="none" viewbox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/> </svg>
+            </button>
+            <%= textarea f,  :text,  placeholder: "Enter your message...",  class: "block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-md outline-none focus:text-gray-700",  required: true,
+                  "x-ref": "text", "x-data": "{}", "x-on:keydown.enter.prevent": "submit($refs)" %>
+            <%= hidden_input f, :conversation_id, value: @conversation.id %>
+            <button id="submit" type="submit"><svg class="w-5 h-5 text-indigo-600 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" fill="currentColor"> <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/> </svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function submit(refs) {
+    var btn = document.getElementById("submit");
+    btn.click();
+    refs.text.value = '';
+  }
+</script>
