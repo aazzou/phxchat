@@ -1,4 +1,4 @@
-defmodule Phxchat.MixProject do
+defmodule PhxChat.MixProject do
   use Mix.Project
 
   def project do

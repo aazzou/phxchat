@@ -1,4 +1,4 @@
-defmodule Phxchat.ChatFixtures do
+defmodule PhxChat.ChatFixtures do
   @moduledoc """
   This module defines test helpers for creating
   entities via the `PhxChat.Chat` context.

@@ -1,4 +1,4 @@
-defmodule Phxchat.AccountsFixtures do
+defmodule PhxChat.AccountsFixtures do
   @moduledoc """
   This module defines test helpers for creating
   entities via the `PhxChat.Accounts` context.

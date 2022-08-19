@@ -1,4 +1,4 @@
-defmodule Phxchat.Accounts.UserToken do
+defmodule PhxChat.Accounts.UserToken do
   use Ecto.Schema
   import Ecto.Query
   alias PhxChat.Accounts.UserToken

@@ -1,4 +1,4 @@
-defmodule Phxchat.Accounts.User do
+defmodule PhxChat.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 

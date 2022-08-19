@@ -1,4 +1,4 @@
-defmodule Phxchat.Chat.Conversation do
+defmodule PhxChat.Chat.Conversation do
   use Ecto.Schema
   import Ecto.Changeset
 

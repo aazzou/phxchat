@@ -1,4 +1,4 @@
-defmodule Phxchat.AccountsTest do
+defmodule PhxChat.AccountsTest do
   use PhxChat.DataCase
 
   alias PhxChat.Accounts

@@ -1,4 +1,4 @@
-defmodule Phxchat.Repo.Migrations.AddDefaultTimestampsToUsersConversations do
+defmodule PhxChat.Repo.Migrations.AddDefaultTimestampsToUsersConversations do
   use Ecto.Migration
 
   def change do

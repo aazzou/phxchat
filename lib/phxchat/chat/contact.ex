@@ -1,4 +1,4 @@
-defmodule Phxchat.Chat.Contact do
+defmodule PhxChat.Chat.Contact do
   use Ecto.Schema
   import Ecto.Changeset
 

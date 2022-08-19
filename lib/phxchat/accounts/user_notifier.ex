@@ -1,4 +1,4 @@
-defmodule Phxchat.Accounts.UserNotifier do
+defmodule PhxChat.Accounts.UserNotifier do
   import Swoosh.Email
 
   alias PhxChat.Mailer

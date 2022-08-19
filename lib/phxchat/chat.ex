@@ -1,4 +1,4 @@
-defmodule Phxchat.Chat do
+defmodule PhxChat.Chat do
   import Ecto.Query, warn: false
 
   alias PhxChat.Repo
